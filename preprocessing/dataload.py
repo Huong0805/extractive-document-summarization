@@ -88,10 +88,10 @@ def _createEmbeddedTestData(sentences, summaries):
     count = 0
     max_size = 0
     
-    documents_over_190 = 0
-    sentences_over_190 = 0
+    documents_over_90 = 0
+    sentences_over_90 = 0
     sentences_removed = 0
-    over_190 = False
+    over_90 = False
 
     for s in sentences.keys():
         arr = np.ones((len(sentences[s]), 3), dtype=object) 
@@ -103,12 +103,12 @@ def _createEmbeddedTestData(sentences, summaries):
         for e in embedding:
             if len(e) > max_size:
                 max_size = len(e)
-            if len(e) > 190:
-                sentences_over_190 += 1
+            if len(e) > 90:
+                sentences_over_90 += 1
                 over_190 = True
-        if over_190:
-            documents_over_190 += 1
-            over_190 = False
+        if over_90:
+            documents_over_90 += 1
+            over_90 = False
             count -= len(sentences[s])
             sentences_removed += len(sentences[s])
             continue

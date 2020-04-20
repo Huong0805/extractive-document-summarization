@@ -59,14 +59,14 @@ def train(model, x_train, y_train, val_train_ratio=0.2, epochs=1000, batch_size=
 
 def load_data():
     print("loading pickle files...")
-    data1 = pickle.load(open("/global/scratch/alex_vlissidis/wordEmbeddingsToSaliency1.pickle", "rb"))
-    data2 = pickle.load(open("/global/scratch/alex_vlissidis/wordEmbeddingsToSaliency2.pickle", "rb"))
-    data3 = pickle.load(open("/global/scratch/alex_vlissidis/wordEmbeddingsToSaliency3.pickle", "rb"))
-    data4 = pickle.load(open("/global/scratch/alex_vlissidis/wordEmbeddingsToSaliency4.pickle", "rb"))
-    data5 = pickle.load(open("/global/scratch/alex_vlissidis/wordEmbeddingsToSaliency5.pickle", "rb"))
-    data6 = pickle.load(open("/global/scratch/alex_vlissidis/wordEmbeddingsToSaliency6.pickle", "rb"))
-    data7 = pickle.load(open("/global/scratch/alex_vlissidis/wordEmbeddingsToSaliency7.pickle", "rb"))
-    data8 = pickle.load(open("/global/scratch/alex_vlissidis/wordEmbeddingsToSaliency8.pickle", "rb"))
+    data1 = pickle.load(open("/content/extractive-document-summarization/preprocessing/wordEmbeddingsToSaliency1.pickle", "rb"))
+    data2 = pickle.load(open("/content/extractive-document-summarization/preprocessing/wordEmbeddingsToSaliency2.pickle", "rb"))
+    data3 = pickle.load(open("/content/extractive-document-summarization/preprocessing/wordEmbeddingsToSaliency3.pickle", "rb"))
+    data4 = pickle.load(open("/content/extractive-document-summarization/preprocessing/wordEmbeddingsToSaliency4.pickle", "rb"))
+    data5 = pickle.load(open("/content/extractive-document-summarization/preprocessing/wordEmbeddingsToSaliency5.pickle", "rb"))
+    data6 = pickle.load(open("/content/extractive-document-summarization/preprocessing/wordEmbeddingsToSaliency6.pickle", "rb"))
+    data7 = pickle.load(open("/content/extractive-document-summarization/preprocessing/wordEmbeddingsToSaliency7.pickle", "rb"))
+    data8 = pickle.load(open("/content/extractive-document-summarization/preprocessing/wordEmbeddingsToSaliency8.pickle", "rb"))
 
     print("concatenating data...")
     data = np.concatenate((data1, data2, data3, data4, data5, data6, data7, data8), axis=0)
@@ -93,7 +93,7 @@ def load_data():
 
 def main():
     # Model Hyperparameters
-    conv_window_size = (3, 300)
+    conv_window_size = (3, 768)
     num_filters = 400
     reg = 0.01
     dropout = 0.5
