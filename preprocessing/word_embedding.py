@@ -139,24 +139,24 @@ def embed_sentences(data, word2vec_limit=50000, NUM_WORDS=20000):
     word_index = tokenizer.word_index
     # print("word_index: " , word_index , "\n" )
 
+    # start
+    word_freq = freq(sentences)
+    # c = 1
+    # for token in sentences:
+    #     sentenceimp = sentence_importance(token, word_freq, sentences)
+    #     sentence_with_importance[c] = sentenceimp
+    #     c = c + 1
+    # sentence_with_importance = sorted(sentence_with_importance.items(), key=operator.itemgetter(1), reverse=True)
+    # finish
+
     # Build a dictionnary mapping tokens to vectors e.g. {'1': [2, ... , -3] ; '2': [4, ... , 0.8] ; ... }
     embedding_weights = {key: embedding_model[word] if word in word_vectors.vocab else
-    np.random.uniform(-0.25, 0.25, word_vectors.vector_size)
+    np.random.uniform(-0.25, 0.25, word_vectors.vector_size) + sentence_importance(sequences, word_freq, sentences)
                          for word, key in word_index.items()}
     # Add the token "0", used for padding
     embedding_weights[0] = np.zeros(word_vectors.vector_size)
 
     # print("Embedding weights: " , embedding_weights , "\n")
-    # start
-    word_freq = freq(sentences)
-    sentence_with_importance = {}
-    c = 1
-    for token in sentences:
-        sentenceimp = sentence_importance(token, word_freq, sentences)
-        sentence_with_importance[c] = sentenceimp
-        c = c + 1
-    sentence_with_importance = sorted(sentence_with_importance.items(), key=operator.itemgetter(1), reverse=True)
-    # finish
 
     # Build a 3D array: 1D for the sentences, 1D for the words and 1D for the word2vec dimensions.
     embedded_sentences = np.stack(
