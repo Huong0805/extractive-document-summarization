@@ -105,7 +105,7 @@ def _createEmbeddedTestData(sentences, summaries):
                 max_size = len(e)
             if len(e) > 90:
                 sentences_over_90 += 1
-                over_s90 = True
+                over_90 = True
         if over_90:
             documents_over_90 += 1
             over_90 = False
